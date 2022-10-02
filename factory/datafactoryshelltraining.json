@@ -1,0 +1,9 @@
+{
+	"name": "datafactoryshelltraining",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2578e628-9596-42bf-a734-07307b55494d",
+		"tenantId": "ef3b755a-7e5c-4105-8ceb-01e3e1e98f4b"
+	}
+}

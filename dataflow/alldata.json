@@ -1,0 +1,86 @@
+{
+	"name": "alldata",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "payroll_2021",
+						"type": "DatasetReference"
+					},
+					"name": "alldata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "NYC_All_Data_Synapse",
+						"type": "DatasetReference"
+					},
+					"name": "synapsealldata"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          FiscalYear as string,",
+				"          PayrollNumber as string,",
+				"          AgencyCode as string,",
+				"          AgencyName as string,",
+				"          EmployeeID as string,",
+				"          LastName as string,",
+				"          FirstName as string,",
+				"          AgencyStartDate as string,",
+				"          WorkLocationBorough as string,",
+				"          TitleCode as string,",
+				"          TitleDescription as string,",
+				"          LeaveStatusasofJune30 as string,",
+				"          BaseSalary as string,",
+				"          PayBasis as string,",
+				"          RegularHours as string,",
+				"          RegularGrossPaid as string,",
+				"          OTHours as string,",
+				"          TotalOTPaid as string,",
+				"          TotalOtherPay as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> alldata",
+				"alldata sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          FiscalYear,",
+				"          PayrollNumber,",
+				"          AgencyCode,",
+				"          AgencyName,",
+				"          EmployeeID,",
+				"          LastName,",
+				"          FirstName,",
+				"          AgencyStartDate,",
+				"          WorkLocationBorough,",
+				"          TitleCode,",
+				"          TitleDescription,",
+				"          LeaveStatusasofJune30,",
+				"          BaseSalary,",
+				"          PayBasis,",
+				"          RegularHours,",
+				"          RegularGrossPaid,",
+				"          OTHours,",
+				"          TotalOTPaid,",
+				"          TotalOtherPay",
+				"     )) ~> synapsealldata"
+			]
+		}
+	}
+}

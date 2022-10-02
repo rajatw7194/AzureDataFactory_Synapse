@@ -1,0 +1,56 @@
+{
+	"name": "titledataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "title_master",
+						"type": "DatasetReference"
+					},
+					"name": "titlemaster"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "NYC_Payroll_TITLE_MD_Synapse",
+						"type": "DatasetReference"
+					},
+					"name": "synapsetitle"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          TitleCode as string,",
+				"          TitleDescription as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> titlemaster",
+				"titlemaster sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          TitleCode as string,",
+				"          TitleDescription as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          TitleCode,",
+				"          TitleDescription",
+				"     )) ~> synapsetitle"
+			]
+		}
+	}
+}
