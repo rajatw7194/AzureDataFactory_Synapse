@@ -1,1 +1,0 @@
-# AzureDataFactory_Synapse
