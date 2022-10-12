@@ -90,9 +90,6 @@ Since the data from Divvy are anonymous, we have generated fake rider and accoun
   cd ../../
 ```
 
-![Resource Group New](/images/resource_group%20-%20Copy.png)
-
-
 
 ## Task 2: Design a star schema
 You are being provided a relational schema that describes the data as it exists in PostgreSQL. In addition, you have been given a set of business requirements related to the data warehouse. You are being asked to design a star schema using fact and dimension tables.
